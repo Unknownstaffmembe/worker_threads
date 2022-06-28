@@ -4,8 +4,8 @@ local NumWorkers = 1024
 local Workers = WorkerThreads.New(Complex, "Iterate", NumWorkers)
 
 local GridSize = Vector2.new(500, 500)
-local CentrePosition = Vector3.new(0, 20, 0)
-local PartSize = Vector3.new(0.5, 0.5, 0.5)
+local CentrePosition = Vector3.new(0, 10, 0)
+local PartSize = Vector3.new(1, 1, 1)
 
 local PartIncX, PartIncZ = PartSize.X, PartSize.Z
 local Sx, Sy = GridSize.X, GridSize.Y

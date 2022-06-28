@@ -52,7 +52,7 @@ end
 
 function Methods:Clean() -- the reason why RemoveWorker isn't a method is because things can get messy, what if a function yeilds and workers are currently doing work, you may remove an active worker; clean is meant to be run when no work is being done ( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)
 	for _, Worker in pairs(self.Workers) do
-		Worker:Destroy() -- don't reuse this object after cleaning it because references in self.Workers won't be removed; they're expected to be garbage collected so, make sure to remove all references to the object this has been called on ( ͡° ͜ʖ ͡ – ✧)
+		Worker.Parent:Destroy() -- don't reuse this object after cleaning it because references in self.Workers won't be removed; they're expected to be garbage collected so, make sure to remove all references to the object this has been called on ( ͡° ͜ʖ ͡ – ✧)
 	end
 end
 
