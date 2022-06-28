@@ -1,6 +1,6 @@
 local WorkerThreads = require(game:GetService("ReplicatedStorage").WorkerThreads)
 local Complex = script.Complex
-local NumWorkers = 1024
+local NumWorkers = 64
 local Workers = WorkerThreads.New(Complex, "Iterate", NumWorkers)
 
 local GridSize = Vector2.new(500, 500)
