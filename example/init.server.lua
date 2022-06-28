@@ -4,7 +4,7 @@ local NumWorkers = 1024
 local Workers = WorkerThreads.New(Complex, "Iterate", NumWorkers)
 
 local GridSize = Vector2.new(500, 500)
-local CentrePosition = Vector3.new(0, 10, 0)
+local CentrePosition = Vector3.new(0, 0, 0)
 local PartSize = Vector3.new(1, 1, 1)
 
 local PartIncX, PartIncZ = PartSize.X, PartSize.Z
@@ -50,7 +50,7 @@ BlueprintPart.Material = Enum.Material.Neon
 BlueprintPart.Size = PartSize
 
 print("WAITING FOR THE GAME TO LOAD IN") -- lol
-task.wait(10)
+task.wait(3) -- just preventing a sudden lag spike
 local Iterations = 0
 for ix = 1, Sx do
 	for iy = 1, Sy do
@@ -67,8 +67,8 @@ for ix = 1, Sx do
 	end
 end
 
-print("YIELDING FOR 10 SECONDS")
-task.wait(10)
+print("YIELDING FOR 3 SECONDS")
+task.wait(3)
 
 task.spawn(DispatchWork, Vector2.new(1, 1), PartsTable[PartsForSingleWorker][2], 1)
 
