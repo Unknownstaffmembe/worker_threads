@@ -1,0 +1,18 @@
+{
+  "name": "worker_threads2",
+  "tree": {
+    "$className": "DataModel",
+
+    "ReplicatedStorage": {
+      "WorkerThreads": {
+        "$path": "worker_threads"
+      }
+    },
+    
+    "ServerScriptService": {
+      "Example": {
+       "$path": "example"
+      }
+    }
+  }
+}
