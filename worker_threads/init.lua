@@ -6,11 +6,11 @@ local ActorTemplate
 local ActorContainer = Instance.new("Folder")
 ActorContainer.Name = "WORKER CONTAINER"
 
-if game:GetService("RunService"):IsStudio() then
+if game:GetService("RunService"):IsServer() then
 	ActorTemplate = script:WaitForChild("Actor_Server")
 	ActorContainer.Parent = game.ServerScriptService
 else
-	ActorTemlate = script:WaitForChild("Actor_Client")
+	ActorTemplate = script:WaitForChild("Actor_Client")
 	ActorContainer.Parent = game:GetService("Players").LocalPlayer.PlayerScripts -- this was done assuming that scripts in ReplicatedFirst won't require this moduel, if so, I'd recommend changing this to something else (╯ ͠° ͟ʖ ͡°)╯┻━┻ 
 end
 

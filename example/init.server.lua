@@ -1,11 +1,11 @@
 local WorkerThreads = require(game:GetService("ReplicatedStorage").WorkerThreads)
 local Complex = script.Complex
-local NumWorkers = 64
+local NumWorkers = 1024
 local Workers = WorkerThreads.New(Complex, "Iterate", NumWorkers)
 
-local GridSize = Vector2.new(200, 200)
+local GridSize = Vector2.new(500, 500)
 local CentrePosition = Vector3.new(0, 20, 0)
-local PartSize = Vector3.new(1, 1, 1)
+local PartSize = Vector3.new(0.5, 0.5, 0.5)
 
 local PartIncX, PartIncZ = PartSize.X, PartSize.Z
 local Sx, Sy = GridSize.X, GridSize.Y
@@ -35,26 +35,40 @@ end
 local function DispatchWork(Start, End)
 	local Ret = Workers:DoWork(Start, Centre, End, Sy, IncX, IncY)
 	for i, v in pairs(Ret) do
-		ColoursTable[tostring(i)] = v
+		PartsTable[tonumber(i)][1].Color = v
 	end
 	CompletedJobs += 1
 	if CompletedJobs == Jobs then
-		Done()
+		--Done()
 	end
 end
 
+local BlueprintPart = Instance.new("Part")
+BlueprintPart.Anchored = true
+BlueprintPart.CanCollide = false
+BlueprintPart.Material = Enum.Material.Neon
+BlueprintPart.Size = PartSize
+
+print("WAITING FOR THE GAME TO LOAD IN") -- lol
+task.wait(10)
+local Iterations = 0
 for ix = 1, Sx do
 	for iy = 1, Sy do
-		local Part = Instance.new("Part")
-		Part.Anchored = true
-		Part.CanCollide = false
-		Part.Size = PartSize
+		local Part = BlueprintPart:Clone()
 		Part.Position = CentrePosition + Vector3.new((ix - Cx) * PartIncX, 0, (iy - Cy) * PartIncZ)
 		PartsTable[Counter] = {Part, Vector2.new(ix, iy)}
 		Part.Parent = workspace
 		Counter += 1
+		Iterations += 1
+		if Iterations == 400 then
+			task.wait()
+			Iterations = 0
+		end
 	end
 end
+
+print("YIELDING FOR 10 SECONDS")
+task.wait(10)
 
 task.spawn(DispatchWork, Vector2.new(1, 1), PartsTable[PartsForSingleWorker][2], 1)
 
