@@ -1,0 +1,6 @@
+{
+  "className": "Actor",
+  "properties": {
+    "Name": "Actor_Client"
+  }
+}
