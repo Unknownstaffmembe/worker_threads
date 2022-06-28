@@ -33,7 +33,7 @@ local function Done()
 end
 
 local function DispatchWork(Start, End)
-	local Ret = Workers:AddWork(Start, Centre, End, Sy, IncX, IncY)
+	local Ret = Workers:DoWork(Start, Centre, End, Sy, IncX, IncY)
 	for i, v in pairs(Ret) do
 		ColoursTable[tostring(i)] = v
 	end

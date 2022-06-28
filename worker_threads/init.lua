@@ -29,7 +29,7 @@ function Module.New(Module, Job, NumWorkers)
 	return Object
 end
 
-function Methods:AddWork(...) -- if you wanted to optimise this even more, you could create this in Module.New and use an upvalue referencing the object created instead; I hope luau optimises this ¯\_( ͡° ͜ʖ ͡°)_/¯
+function Methods:DoWork(...) -- if you wanted to optimise this even more, you could create this in Module.New and use an upvalue referencing the object created instead; I hope luau optimises this ¯\_( ͡° ͜ʖ ͡°)_/¯
 	local Worker = self.Counter
 	if Worker == self.NumWorkers then
 		self.Counter = 1
